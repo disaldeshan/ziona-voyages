@@ -2,10 +2,29 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Search, Menu, X } from 'lucide-react';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [query, setQuery] = useState('');
+  const [mobileQuery, setMobileQuery] = useState('');
+  const router = useRouter();
+
+  function handleSearch(e: React.FormEvent) {
+    e.preventDefault();
+    const q = query.trim();
+    router.push(q ? `/destinations?q=${encodeURIComponent(q)}` : '/destinations');
+    setQuery('');
+  }
+
+  function handleMobileSearch(e: React.FormEvent) {
+    e.preventDefault();
+    const q = mobileQuery.trim();
+    router.push(q ? `/destinations?q=${encodeURIComponent(q)}` : '/destinations');
+    setMobileQuery('');
+    setIsOpen(false);
+  }
 
   return (
     <header className="sticky top-0 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
@@ -23,14 +42,16 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <div className="relative hidden sm:block w-64">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
+          <form onSubmit={handleSearch} className="relative hidden sm:flex items-center w-64">
+            <Search className="absolute left-3 text-muted-foreground pointer-events-none" size={16} />
             <input
               type="text"
-              placeholder="Search your favourite destination here..."
-              className="w-full pl-10 pr-4 py-2 rounded-full bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent text-sm"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search destinations…"
+              className="w-full pl-9 pr-4 py-2 rounded-full bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent text-sm"
             />
-          </div>
+          </form>
           <button
             className="md:hidden p-1"
             onClick={() => setIsOpen(!isOpen)}
@@ -44,14 +65,19 @@ export default function Header() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden border-t border-border bg-background px-8 py-4 space-y-4">
-          <div className="relative w-full mb-2">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
+          <form onSubmit={handleMobileSearch} className="relative w-full mb-2 flex items-center">
+            <Search className="absolute left-3 text-muted-foreground pointer-events-none" size={16} />
             <input
               type="text"
-              placeholder="Search destinations..."
-              className="w-full pl-10 pr-4 py-2 rounded-full bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent text-sm"
+              value={mobileQuery}
+              onChange={(e) => setMobileQuery(e.target.value)}
+              placeholder="Search destinations…"
+              className="w-full pl-9 pr-16 py-2 rounded-full bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent text-sm"
             />
-          </div>
+            <button type="submit" className="absolute right-2 bg-accent text-accent-foreground text-xs font-semibold px-3 py-1.5 rounded-full">
+              Go
+            </button>
+          </form>
           <Link href="/" onClick={() => setIsOpen(false)} className="block text-foreground hover:text-accent transition-colors py-2 border-b border-border/50">Home</Link>
           <Link href="/destinations" onClick={() => setIsOpen(false)} className="block text-foreground hover:text-accent transition-colors py-2 border-b border-border/50">Destinations</Link>
           <Link href="/packages" onClick={() => setIsOpen(false)} className="block text-foreground hover:text-accent transition-colors py-2 border-b border-border/50">Packages</Link>
