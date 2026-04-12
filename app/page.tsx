@@ -45,8 +45,7 @@ const packages = [
 
 export default function Home() {
   return (
-    <div className="dark">
-      <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col">
         <Header />
         <main className="flex-1">
           <HeroSection />
@@ -183,7 +182,6 @@ export default function Home() {
             </div>
           </section>
         </main>
-      </div>
     </div>
   );
 }

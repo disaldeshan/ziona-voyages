@@ -55,8 +55,7 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="dark">
-      <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col">
         <Header />
         <main className="flex-1 px-8 md:px-16 py-12">
             {/* Header Section */}
@@ -213,7 +212,6 @@ export default function ContactPage() {
               </div>
             </div>
         </main>
-      </div>
     </div>
   );
 }

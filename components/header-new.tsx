@@ -1,21 +1,26 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, MessageCircle } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import { Menu, X, MessageCircle, Sun, Moon } from 'lucide-react';
 
 const WHATSAPP_NUMBER = '94779152040';
 const WHATSAPP_MESSAGE = 'Hello! I am interested in a trip to Sri Lanka. Could you help me plan my journey?';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => setMounted(true), []);
 
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
   return (
     <header className="sticky top-0 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
       <div className="flex items-center justify-between px-6 md:px-8 py-4">
-        <Link href="/" className="text-white font-bold text-2xl hover:opacity-80 transition-opacity">
+        <Link href="/" className="text-foreground font-bold text-2xl hover:opacity-80 transition-opacity">
           Ziona Voyages
         </Link>
 
@@ -28,6 +33,20 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
+          {/* Theme Toggle */}
+          {mounted && (
+            <button
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="p-2 rounded-full bg-secondary/60 hover:bg-secondary border border-border transition-colors"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark'
+                ? <Sun size={18} className="text-foreground" />
+                : <Moon size={18} className="text-foreground" />
+              }
+            </button>
+          )}
+
           {/* WhatsApp Button */}
           <a
             href={whatsappUrl}

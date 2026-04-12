@@ -174,13 +174,11 @@ function DestinationsList() {
 
 export default function DestinationsPage() {
   return (
-    <div className="dark">
-      <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col">
         <Header />
         <Suspense fallback={<div className="flex-1 flex items-center justify-center text-muted-foreground">Loading…</div>}>
           <DestinationsList />
         </Suspense>
-      </div>
     </div>
   );
 }

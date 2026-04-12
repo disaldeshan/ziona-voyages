@@ -128,8 +128,7 @@ export default function PackagesPage() {
   ];
 
   return (
-    <div className="dark">
-      <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col">
         <Header />
         <main className="flex-1 px-8 md:px-16 py-12">
             {/* Header Section */}
@@ -219,7 +218,6 @@ export default function PackagesPage() {
               </button>
             </div>
         </main>
-      </div>
     </div>
   );
 
