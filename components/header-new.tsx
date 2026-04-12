@@ -3,10 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
-import { Menu, X, MessageCircle, Sun, Moon } from 'lucide-react';
-
-const WHATSAPP_NUMBER = '94779152040';
-const WHATSAPP_MESSAGE = 'Hello! I am interested in a trip to Sri Lanka. Could you help me plan my journey?';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,8 +11,6 @@ export default function Header() {
   const { theme, setTheme } = useTheme();
 
   useEffect(() => setMounted(true), []);
-
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
   return (
     <header className="sticky top-0 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
@@ -47,17 +42,6 @@ export default function Header() {
             </button>
           )}
 
-          {/* WhatsApp Button */}
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold text-sm px-4 py-2 rounded-full transition-colors"
-          >
-            <MessageCircle size={16} />
-            <span className="hidden sm:inline">WhatsApp Us</span>
-          </a>
-
           {/* Mobile Menu Button */}
           <button
             className="md:hidden p-1"
@@ -76,16 +60,7 @@ export default function Header() {
           <Link href="/destinations" onClick={() => setIsOpen(false)} className="block text-foreground hover:text-accent transition-colors py-2 border-b border-border/50">Destinations</Link>
           <Link href="/packages" onClick={() => setIsOpen(false)} className="block text-foreground hover:text-accent transition-colors py-2 border-b border-border/50">Packages</Link>
           <Link href="/blog" onClick={() => setIsOpen(false)} className="block text-foreground hover:text-accent transition-colors py-2 border-b border-border/50">Blog</Link>
-          <Link href="/contact" onClick={() => setIsOpen(false)} className="block text-foreground hover:text-accent transition-colors py-2 border-b border-border/50">Contact Us</Link>
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold text-sm px-4 py-2.5 rounded-full transition-colors w-full justify-center mt-2"
-          >
-            <MessageCircle size={16} />
-            WhatsApp Us
-          </a>
+          <Link href="/contact" onClick={() => setIsOpen(false)} className="block text-foreground hover:text-accent transition-colors py-2">Contact Us</Link>
         </div>
       )}
     </header>
