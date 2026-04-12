@@ -1,66 +1,110 @@
 'use client';
 
+// ================================================================
+// HEADER / NAVBAR — ZIONA VOYAGES
+// ----------------------------------------------------------------
+// Sticky header with centred nav, theme toggle (sun/moon), and
+// mobile hamburger menu. Uses theme CSS variables automatically —
+// no hardcoded colours so it adapts instantly when theme changes.
+// ================================================================
+
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen]   = useState(false);
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme }   = useTheme();
 
+  // Avoid hydration mismatch — only render theme icon after mount
   useEffect(() => setMounted(true), []);
 
+  // Toggle between the two luxury themes
+  function toggleTheme() {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  }
+
   return (
-    <header className="sticky top-0 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
+    <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-b border-border transition-colors duration-300">
       <div className="flex items-center justify-between px-6 md:px-8 py-4">
-        <Link href="/" className="text-foreground font-bold text-2xl hover:opacity-80 transition-opacity">
+
+        {/* ── Brand Logo ── */}
+        <Link
+          href="/"
+          className="text-foreground font-bold text-2xl tracking-tight hover:text-accent transition-colors duration-300"
+        >
           Ziona Voyages
         </Link>
 
+        {/* ── Desktop Navigation ── */}
         <nav className="hidden md:flex gap-8 absolute left-1/2 -translate-x-1/2">
-          <Link href="/" className="text-foreground hover:text-accent transition-colors text-sm">Home</Link>
-          <Link href="/destinations" className="text-foreground hover:text-accent transition-colors text-sm">Destinations</Link>
-          <Link href="/packages" className="text-foreground hover:text-accent transition-colors text-sm">Packages</Link>
-          <Link href="/blog" className="text-foreground hover:text-accent transition-colors text-sm">Blog</Link>
-          <Link href="/contact" className="text-foreground hover:text-accent transition-colors text-sm">Contact Us</Link>
+          {[
+            { href: '/',            label: 'Home'        },
+            { href: '/destinations',label: 'Destinations'},
+            { href: '/packages',    label: 'Packages'    },
+            { href: '/blog',        label: 'Blog'        },
+            { href: '/contact',     label: 'Contact Us'  },
+          ].map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className="text-muted-foreground hover:text-accent text-sm font-medium transition-colors duration-200"
+            >
+              {label}
+            </Link>
+          ))}
         </nav>
 
+        {/* ── Right Controls ── */}
         <div className="flex items-center gap-3">
-          {/* Theme Toggle */}
+
+          {/* Theme toggle — Sun (switch to light) / Moon (switch to dark) */}
           {mounted && (
             <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-full bg-secondary/60 hover:bg-secondary border border-border transition-colors"
-              aria-label="Toggle theme"
+              onClick={toggleTheme}
+              aria-label="Toggle luxury theme"
+              className="p-2 rounded-full border border-border bg-secondary/60 hover:border-accent hover:bg-secondary
+                         transition-all duration-300 hover:shadow-[0_0_12px_color-mix(in_srgb,var(--accent)_30%,transparent)]"
             >
               {theme === 'dark'
-                ? <Sun size={18} className="text-foreground" />
-                : <Moon size={18} className="text-foreground" />
+                ? <Sun  size={17} className="text-accent" />
+                : <Moon size={17} className="text-foreground" />
               }
             </button>
           )}
 
-          {/* Mobile Menu Button */}
+          {/* Mobile hamburger */}
           <button
-            className="md:hidden p-1"
+            className="md:hidden p-1 text-foreground hover:text-accent transition-colors duration-200"
             onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
+            aria-label="Toggle navigation menu"
           >
-            {isOpen ? <X size={24} className="text-foreground" /> : <Menu size={24} className="text-foreground" />}
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* ── Mobile Menu ── */}
       {isOpen && (
-        <div className="md:hidden border-t border-border bg-background px-8 py-4 space-y-4">
-          <Link href="/" onClick={() => setIsOpen(false)} className="block text-foreground hover:text-accent transition-colors py-2 border-b border-border/50">Home</Link>
-          <Link href="/destinations" onClick={() => setIsOpen(false)} className="block text-foreground hover:text-accent transition-colors py-2 border-b border-border/50">Destinations</Link>
-          <Link href="/packages" onClick={() => setIsOpen(false)} className="block text-foreground hover:text-accent transition-colors py-2 border-b border-border/50">Packages</Link>
-          <Link href="/blog" onClick={() => setIsOpen(false)} className="block text-foreground hover:text-accent transition-colors py-2 border-b border-border/50">Blog</Link>
-          <Link href="/contact" onClick={() => setIsOpen(false)} className="block text-foreground hover:text-accent transition-colors py-2">Contact Us</Link>
+        <div className="md:hidden border-t border-border bg-background px-8 py-5 space-y-1 transition-all duration-300">
+          {[
+            { href: '/',            label: 'Home'        },
+            { href: '/destinations',label: 'Destinations'},
+            { href: '/packages',    label: 'Packages'    },
+            { href: '/blog',        label: 'Blog'        },
+            { href: '/contact',     label: 'Contact Us'  },
+          ].map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              onClick={() => setIsOpen(false)}
+              className="block text-foreground hover:text-accent py-2.5 border-b border-border/40 text-sm font-medium transition-colors duration-200 last:border-0"
+            >
+              {label}
+            </Link>
+          ))}
         </div>
       )}
     </header>

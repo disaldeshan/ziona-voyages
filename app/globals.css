@@ -1,125 +1,271 @@
+/* ================================================================
+   ZIONA VOYAGES — LUXURY THEME SYSTEM
+   ----------------------------------------------------------------
+   Centralized CSS design tokens powering the full site.
+   To add a new theme (e.g. Emerald, Ocean Blue) simply define a
+   new class (e.g. .theme-emerald) with the same variable names.
+   The Tailwind @theme block below maps every token automatically.
+================================================================ */
+
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+/* Tailwind dark variant: triggered by .dark class on <html> */
 @custom-variant dark (&:is(.dark *));
 
+/* ----------------------------------------------------------------
+   LIGHT LUXURY THEME (default)
+   "Elegant soft luxury boutique travel concierge feel"
+   Palette: warm ivory, coral, gold, rich brown text
+---------------------------------------------------------------- */
 :root {
-  --background: oklch(0.99 0.001 0);
-  --foreground: oklch(0.15 0.01 240);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0.01 240);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0.01 240);
-  --primary: oklch(0.35 0.15 220);
-  --primary-foreground: oklch(0.95 0.01 0);
-  --secondary: oklch(0.85 0.08 200);
-  --secondary-foreground: oklch(0.15 0.01 240);
-  --muted: oklch(0.92 0.01 0);
-  --muted-foreground: oklch(0.55 0.01 0);
-  --accent: oklch(0.45 0.12 30);
-  --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.9 0.005 0);
-  --input: oklch(0.95 0.01 0);
-  --ring: oklch(0.35 0.15 220);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  /* — Surfaces — */
+  --background:          #F8F4EE;   /* warm ivory page bg */
+  --background-secondary:#FFFDF9;   /* slightly lighter secondary bg */
+  --foreground:          #2F241D;   /* deep rich brown text */
+
+  /* — Cards & Popovers — */
+  --card:                #FDF8F1;   /* soft warm card surface */
+  --card-foreground:     #2F241D;
+  --popover:             #FDF8F1;
+  --popover-foreground:  #2F241D;
+
+  /* — Primary (Coral) — */
+  --primary:             #C97D60;   /* coral accent */
+  --primary-foreground:  #FFFFFF;
+
+  /* — Secondary — */
+  --secondary:           #EDE7DC;   /* warm beige */
+  --secondary-foreground:#2F241D;
+
+  /* — Muted — */
+  --muted:               #EDE7DC;
+  --muted-foreground:    #6E6259;   /* warm secondary text */
+
+  /* — Accent (Gold) — shared across both themes — */
+  --accent:              #D4A574;   /* luxury gold */
+  --accent-foreground:   #2F241D;
+
+  /* — Borders & Inputs — */
+  --border:              #E8DDD0;
+  --input:               #EDE7DC;
+  --ring:                #D4A574;
+
+  /* — Destructive — */
+  --destructive:         #C0392B;
+  --destructive-foreground: #FFFFFF;
+
+  /* — Border radius — */
+  --radius:              0.75rem;
+
+  /* — Chart palette — */
+  --chart-1: #D4A574;
+  --chart-2: #C97D60;
+  --chart-3: #2E8B7D;
+  --chart-4: #B8A99A;
+  --chart-5: #6E6259;
+
+  /* — Sidebar — */
+  --sidebar:                    #FDF8F1;
+  --sidebar-foreground:         #2F241D;
+  --sidebar-primary:            #C97D60;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent:             #EDE7DC;
+  --sidebar-accent-foreground:  #2F241D;
+  --sidebar-border:             #E8DDD0;
+  --sidebar-ring:               #D4A574;
 }
 
+/* ----------------------------------------------------------------
+   DARK LUXURY THEME
+   "Premium tropical resort feel with deep navy & gold"
+   Palette: deep navy/charcoal, gold accent, teal, white text
+---------------------------------------------------------------- */
 .dark {
-  --background: oklch(0.12 0.01 40);
-  --foreground: oklch(0.95 0.01 0);
-  --card: oklch(0.18 0.02 40);
-  --card-foreground: oklch(0.95 0.01 0);
-  --popover: oklch(0.18 0.02 40);
-  --popover-foreground: oklch(0.95 0.01 0);
-  --primary: oklch(0.95 0.01 0);
-  --primary-foreground: oklch(0.12 0.01 40);
-  --secondary: oklch(0.35 0.08 40);
-  --secondary-foreground: oklch(0.95 0.01 0);
-  --muted: oklch(0.35 0.08 40);
-  --muted-foreground: oklch(0.65 0.01 0);
-  --accent: oklch(0.60 0.10 35);
-  --accent-foreground: oklch(0.12 0.01 40);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.25 0.02 40);
-  --input: oklch(0.25 0.02 40);
-  --ring: oklch(0.60 0.10 35);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  /* — Surfaces — */
+  --background:          #0B0F14;   /* deep navy-black page bg */
+  --background-secondary:#131A21;   /* slightly lighter panel bg */
+  --foreground:          #FFFFFF;   /* pure white primary text */
+
+  /* — Cards & Popovers — */
+  --card:                #18212B;   /* dark navy card surface */
+  --card-foreground:     #FFFFFF;
+  --popover:             #18212B;
+  --popover-foreground:  #FFFFFF;
+
+  /* — Primary (Teal) — */
+  --primary:             #2E8B7D;   /* deep teal accent */
+  --primary-foreground:  #FFFFFF;
+
+  /* — Secondary — */
+  --secondary:           #131A21;   /* darker navy */
+  --secondary-foreground:#FFFFFF;
+
+  /* — Muted — */
+  --muted:               #1E2A35;
+  --muted-foreground:    #B8C2CC;   /* cool secondary text */
+
+  /* — Accent (Gold) — shared with light theme — */
+  --accent:              #D4A574;   /* luxury gold */
+  --accent-foreground:   #0B0F14;
+
+  /* — Borders & Inputs — */
+  --border:              rgba(212, 165, 116, 0.15);  /* subtle gold border */
+  --input:               #1E2A35;
+  --ring:                #D4A574;
+
+  /* — Destructive — */
+  --destructive:         #8B2020;
+  --destructive-foreground: #FFFFFF;
+
+  /* — Border radius — */
+  --radius:              0.75rem;
+
+  /* — Chart palette — */
+  --chart-1: #D4A574;
+  --chart-2: #2E8B7D;
+  --chart-3: #B8C2CC;
+  --chart-4: #E6B98C;
+  --chart-5: #3AA898;
+
+  /* — Sidebar — */
+  --sidebar:                    #131A21;
+  --sidebar-foreground:         #FFFFFF;
+  --sidebar-primary:            #D4A574;
+  --sidebar-primary-foreground: #0B0F14;
+  --sidebar-accent:             #1E2A35;
+  --sidebar-accent-foreground:  #FFFFFF;
+  --sidebar-border:             rgba(212, 165, 116, 0.15);
+  --sidebar-ring:               #D4A574;
 }
 
+/* ----------------------------------------------------------------
+   TAILWIND TOKEN MAPPING
+   Maps every CSS variable to a Tailwind colour/size utility.
+   Add new tokens here if you extend the design system.
+---------------------------------------------------------------- */
 @theme inline {
   --font-sans: 'Geist', 'Geist Fallback';
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
+
+  --color-background:           var(--background);
+  --color-foreground:           var(--foreground);
+  --color-card:                 var(--card);
+  --color-card-foreground:      var(--card-foreground);
+  --color-popover:              var(--popover);
+  --color-popover-foreground:   var(--popover-foreground);
+  --color-primary:              var(--primary);
+  --color-primary-foreground:   var(--primary-foreground);
+  --color-secondary:            var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
+  --color-muted:                var(--muted);
+  --color-muted-foreground:     var(--muted-foreground);
+  --color-accent:               var(--accent);
+  --color-accent-foreground:    var(--accent-foreground);
+  --color-destructive:          var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
+  --color-border:               var(--border);
+  --color-input:                var(--input);
+  --color-ring:                 var(--ring);
+  --color-chart-1:              var(--chart-1);
+  --color-chart-2:              var(--chart-2);
+  --color-chart-3:              var(--chart-3);
+  --color-chart-4:              var(--chart-4);
+  --color-chart-5:              var(--chart-5);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
+
+  --color-sidebar:                    var(--sidebar);
+  --color-sidebar-foreground:         var(--sidebar-foreground);
+  --color-sidebar-primary:            var(--sidebar-primary);
   --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-accent:             var(--sidebar-accent);
+  --color-sidebar-accent-foreground:  var(--sidebar-accent-foreground);
+  --color-sidebar-border:             var(--sidebar-border);
+  --color-sidebar-ring:               var(--sidebar-ring);
 }
 
+/* ----------------------------------------------------------------
+   BASE LAYER — global resets + smooth theme transition
+---------------------------------------------------------------- */
 @layer base {
+  /* Apply border and outline defaults */
   * {
     @apply border-border outline-ring/50;
   }
+
+  /* Smooth animated theme switching — 0.35s elegant ease */
+  html {
+    transition:
+      background-color 0.35s ease,
+      color 0.35s ease;
+  }
+
   body {
     @apply bg-background text-foreground;
+    transition:
+      background-color 0.35s ease,
+      color 0.35s ease;
+  }
+}
+
+/* ----------------------------------------------------------------
+   LUXURY UTILITY CLASSES
+   Shared reusable styles for cards, buttons, and hover effects.
+   Use these classes in components for consistent luxury feel.
+---------------------------------------------------------------- */
+@layer utilities {
+
+  /* Premium card with hover lift + gold border glow */
+  .luxury-card {
+    @apply bg-card border border-border rounded-2xl transition-all duration-300;
+  }
+  .luxury-card:hover {
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    box-shadow: 0 8px 32px color-mix(in srgb, var(--accent) 12%, transparent),
+                0 2px 8px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+  }
+
+  /* Gold glow CTA button */
+  .btn-gold {
+    @apply bg-accent text-accent-foreground font-semibold rounded-full
+           transition-all duration-300;
+  }
+  .btn-gold:hover {
+    background-color: #E6B98C;
+    box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 45%, transparent);
+    transform: translateY(-1px);
+  }
+
+  /* Coral/primary button (light theme) */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground font-semibold rounded-full
+           transition-all duration-300;
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 18px color-mix(in srgb, var(--primary) 40%, transparent);
+    transform: translateY(-1px);
+  }
+
+  /* Subtle gold text shimmer for labels */
+  .text-gold {
+    color: var(--accent);
+  }
+
+  /* Glass-morphism card used in hero overlays */
+  .glass-card {
+    background: color-mix(in srgb, var(--card) 60%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+    @apply rounded-2xl transition-all duration-300;
+  }
+  .glass-card:hover {
+    background: color-mix(in srgb, var(--card) 80%, transparent);
+    border-color: color-mix(in srgb, var(--accent) 35%, transparent);
   }
 }

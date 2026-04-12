@@ -1,0 +1,204 @@
+Redesign and upgrade my entire Ziona Voyages React website to support BOTH premium Dark Luxury Theme and Light Luxury Theme, with seamless theme switching, scalable architecture, and clean maintainable code.
+
+IMPORTANT:
+Do NOT redesign layout structure.
+Keep all existing page layouts exactly as they are:
+
+* Home
+* Destinations
+* Packages
+* Blog
+* Contact
+
+Only enhance styling, theme system, and UI polish to match the uploaded mockups.
+
+==================================================
+PROJECT GOAL
+============
+
+Create a professional enterprise-grade scalable theme system for my travel website that supports:
+
+1. Dark Luxury Theme (existing dark concept, upgraded to premium level)
+2. Light Luxury Theme (matching uploaded luxury light mockups)
+
+Theme toggle must switch instantly across the full website.
+
+==================================================
+THEME REQUIREMENTS
+==================
+
+Implement full dynamic theme architecture using scalable best practice React pattern:
+
+* Use centralized theme configuration
+* Use reusable theme tokens
+* Use CSS variables OR Tailwind theme extension
+* Make future theme additions easy
+* Structure for long-term scalability
+
+Preferred structure:
+
+/theme
+theme.ts
+darkTheme.ts
+lightTheme.ts
+
+OR equivalent scalable architecture.
+
+==================================================
+DARK THEME COLORS
+=================
+
+Background Primary: #0B0F14
+Background Secondary: #131A21
+Card Background: #18212B
+Primary Accent Gold: #D4A574
+Gold Hover: #E6B98C
+Secondary Accent Teal: #2E8B7D
+Text Primary: #FFFFFF
+Text Secondary: #B8C2CC
+Border Color: rgba(212,165,116,0.15)
+
+==================================================
+LIGHT THEME COLORS
+==================
+
+Background Primary: #F8F4EE
+Background Secondary: #FFFDF9
+Card Background: #FDF8F1
+Primary Accent Gold: #D4A574
+Gold Hover: #E6B98C
+Coral Accent: #C97D60
+Coral Hover: #D98B6D
+Text Primary: #2F241D
+Text Secondary: #6E6259
+Border Color: #E8DDD0
+
+==================================================
+THEME TOGGLE SYSTEM
+===================
+
+Create elegant theme toggle button:
+
+* Keep current theme icon button in navbar top-right
+* Toggle between dark/light instantly
+* Add smooth animated transition
+* Save user preference in localStorage
+* Restore saved theme automatically on reload
+
+==================================================
+UI ENHANCEMENTS REQUIRED
+========================
+
+Apply theme-aware styling to ALL pages:
+
+1. Navbar
+2. Hero section
+3. Search bars
+4. Buttons
+5. Cards
+6. Package panels
+7. Blog cards
+8. Contact forms
+9. Footer
+10. Input fields
+11. Hover states
+12. Borders/shadows
+
+Every UI element must adapt automatically based on selected theme.
+
+==================================================
+DESIGN QUALITY EXPECTATION
+==========================
+
+Dark Theme:
+Luxury premium tropical resort feel.
+
+Light Theme:
+Elegant soft luxury boutique travel concierge feel.
+
+Both must feel:
+
+* Premium
+* Modern
+* International luxury standard
+
+==================================================
+SCALABILITY REQUIREMENTS
+========================
+
+Code must be future-proof and scalable:
+
+* Reusable components only
+* No duplicated theme logic
+* No hardcoded scattered colors
+* Centralized design tokens only
+* Easy future addition for new themes
+
+Example future-ready scalability:
+Possible future themes:
+
+* Emerald Theme
+* Ocean Blue Theme
+* Sunset Theme
+
+Prepare architecture for that.
+
+==================================================
+CODE QUALITY REQUIREMENTS
+=========================
+
+VERY IMPORTANT:
+
+Write clean professional production-grade code with:
+
+1. Clear inline comments
+2. Section comments for each major block
+3. Comment every theme file clearly
+4. Explain reusable component styling logic
+5. Explain toggle logic with comments
+
+Example:
+
+// Theme color tokens for reusable site-wide styling
+// Shared card component styles for all themes
+// Persist user theme preference in browser storage
+
+==================================================
+ANIMATION REQUIREMENTS
+======================
+
+Add smooth premium transitions:
+
+* Theme switch fade transition
+* Button hover transitions
+* Card hover lift effects
+* Glow hover for CTA buttons
+* Smooth shadow transitions
+
+Duration:
+0.3s to 0.5s elegant easing
+
+==================================================
+DO NOT CHANGE
+=============
+
+Do NOT:
+
+* Break existing routing
+* Remove existing functionality
+* Change page content
+* Change navigation structure
+
+Preserve:
+All current business logic and functionality.
+
+==================================================
+FINAL EXPECTATION
+=================
+
+After implementation:
+My site must behave exactly like premium luxury travel websites where users can switch between dark and light luxury themes flawlessly.
+
+Make it polished, elegant, scalable, maintainable, and developer-friendly.
+
+Also ensure code is easy for future developers to understand and extend.
