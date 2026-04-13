@@ -99,7 +99,7 @@ export default function Home() {
     return (
       <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center text-center px-6">
         <Image
-          src="/coming-soon-travel.jpg"
+          src="/under-construction.png"
           alt="Coming Soon"
           width={700}
           height={450}
