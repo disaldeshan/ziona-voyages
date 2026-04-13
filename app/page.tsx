@@ -222,33 +222,59 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="px-6 md:px-16 py-20 bg-background">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <p className="text-accent font-semibold uppercase tracking-widest text-xs mb-2">
+
+        <section className="px-6 md:px-16 py-24 bg-background">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <p className="text-accent font-semibold uppercase tracking-[0.25em] text-sm mb-3">
                 Tour Packages
               </p>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
                 Choose Your Perfect Journey
               </h2>
+              <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+                Handcrafted premium Sri Lanka travel experiences designed for unforgettable memories.
+              </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {packages.map((pkg) => (
-                <div key={pkg.name} className="luxury-card p-6 rounded-2xl shadow-lg">
-                  <h3 className="text-xl font-bold mb-2">{pkg.name}</h3>
-                  <p className="text-muted-foreground mb-2">{pkg.duration}</p>
-                  <p className="text-accent font-bold text-lg mb-4">{pkg.price}</p>
+                <div
+                  key={pkg.name}
+                  className="relative group bg-[#111827] border border-amber-500/20 rounded-3xl p-8 shadow-xl hover:shadow-amber-500/10 hover:-translate-y-2 transition-all duration-500 overflow-hidden"
+                >
                   {pkg.popular && (
-                    <span className="text-sm text-amber-400 font-semibold">
-                      Popular Choice
+                    <span className="absolute top-5 right-5 bg-amber-500 text-black text-xs font-bold px-4 py-1 rounded-full">
+                      Popular
                     </span>
                   )}
+
+                  <h3 className="text-2xl font-bold text-white mb-4">
+                    {pkg.name}
+                  </h3>
+
+                  <p className="text-gray-400 mb-2 text-lg">{pkg.duration}</p>
+
+                  <p className="text-3xl font-bold text-amber-400 mb-6">
+                    {pkg.price}
+                  </p>
+
+                  <ul className="space-y-3 text-gray-300 mb-8">
+                    <li>✔ Luxury Accommodation</li>
+                    <li>✔ Private Guided Tours</li>
+                    <li>✔ Airport Transfers Included</li>
+                    <li>✔ Flexible Itinerary</li>
+                  </ul>
+
+                  <button className="w-full bg-amber-500 hover:bg-amber-400 text-black font-semibold py-3 rounded-xl transition duration-300">
+                    Book Now
+                  </button>
                 </div>
               ))}
             </div>
           </div>
         </section>
+        
         {/* CTA Banner */}
         <section className="relative px-6 md:px-16 py-24 overflow-hidden">
           <Image
