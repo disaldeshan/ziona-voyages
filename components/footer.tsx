@@ -1,131 +1,121 @@
-'use client'
+// ================================================================
+// FOOTER — ZIONA VOYAGES
+// ----------------------------------------------------------------
+// Site-wide luxury footer. Fully theme-aware via CSS variables.
+// Switching dark ↔ light instantly changes every colour here.
+// To update contact details, edit the contactItems array below.
+// ================================================================
 
-import Link from 'next/link'
-import { Facebook, Instagram, Twitter, Mail, Phone } from 'lucide-react'
+import Link from 'next/link';
+import { Mail, Phone, MapPin, Instagram, Facebook, Youtube } from 'lucide-react';
 
-export function Footer() {
+// Quick nav links displayed in the footer columns
+const navLinks = [
+  { href: '/',             label: 'Home'         },
+  { href: '/destinations', label: 'Destinations' },
+  { href: '/packages',     label: 'Packages'     },
+  { href: '/blog',         label: 'Blog'         },
+  { href: '/contact',      label: 'Contact Us'   },
+];
+
+// Contact info items — update phone/email/address here
+const contactItems = [
+  { icon: Mail,   text: 'info@zionavoyages.com'   },
+  { icon: Phone,  text: '+94 (0) 779 152 040'     },
+  { icon: MapPin, text: 'Colombo, Sri Lanka'      },
+];
+
+export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-foreground text-background py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          {/* Brand */}
-          <div className="col-span-1">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-                <span className="text-foreground font-bold text-lg">Z</span>
-              </div>
-              <span className="font-bold text-lg text-background">Ziona Voyages</span>
-            </div>
-            <p className="text-background/80 text-sm">
-              Premium luxury travel experiences crafted for extraordinary moments.
+    <footer className="bg-secondary/30 border-t border-border mt-auto transition-colors duration-300">
+      <div className="max-w-6xl mx-auto px-6 md:px-16 py-14">
+
+        {/* ── Four-column grid ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+          {/* Brand + tagline + social */}
+          <div className="lg:col-span-2">
+            <Link
+              href="/"
+              className="text-foreground font-bold text-2xl tracking-tight hover:text-accent transition-colors duration-300"
+            >
+              Ziona Voyages
+            </Link>
+
+            <p className="mt-4 text-muted-foreground text-sm leading-relaxed max-w-xs">
+              Crafting unforgettable luxury journeys through the Pearl of the Indian
+              Ocean. Your premium Sri Lanka travel specialists since 2014.
             </p>
+
+            {/* Social media icons with gold hover glow */}
+            <div className="flex gap-3 mt-6">
+              {[
+                { Icon: Instagram, href: '#', label: 'Instagram' },
+                { Icon: Facebook,  href: '#', label: 'Facebook'  },
+                { Icon: Youtube,   href: '#', label: 'YouTube'   },
+              ].map(({ Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="w-9 h-9 rounded-full border border-border bg-card flex items-center justify-center
+                             text-muted-foreground hover:text-accent hover:border-accent
+                             transition-all duration-300
+                             hover:shadow-[0_0_10px_color-mix(in_srgb,var(--accent)_25%,transparent)]"
+                >
+                  <Icon size={16} />
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick links */}
           <div>
-            <h3 className="font-bold text-background mb-4">Destinations</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="#" className="text-background/80 hover:text-background transition-colors">
-                  Asia
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-background/80 hover:text-background transition-colors">
-                  Europe
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-background/80 hover:text-background transition-colors">
-                  Americas
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-background/80 hover:text-background transition-colors">
-                  Africa
-                </Link>
-              </li>
+            <h4 className="text-foreground font-semibold mb-5 text-xs tracking-widest uppercase">
+              Quick Links
+            </h4>
+            <ul className="space-y-3">
+              {navLinks.map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="text-muted-foreground hover:text-accent text-sm transition-colors duration-200"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Contact details */}
           <div>
-            <h3 className="font-bold text-background mb-4">Company</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="#" className="text-background/80 hover:text-background transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-background/80 hover:text-background transition-colors">
-                  Our Story
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-background/80 hover:text-background transition-colors">
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-background/80 hover:text-background transition-colors">
-                  Blog
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="font-bold text-background mb-4">Contact</h3>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-center gap-2 text-background/80">
-                <Phone size={16} />
-                +1 (555) 123-4567
-              </li>
-              <li className="flex items-center gap-2 text-background/80">
-                <Mail size={16} />
-                hello@zionavoyages.com
-              </li>
+            <h4 className="text-foreground font-semibold mb-5 text-xs tracking-widest uppercase">
+              Contact
+            </h4>
+            <ul className="space-y-4">
+              {contactItems.map(({ icon: Icon, text }) => (
+                <li key={text} className="flex items-start gap-3">
+                  <Icon size={15} className="text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-muted-foreground text-sm">{text}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-background/20 pt-8 mb-8" />
-
-        {/* Bottom Footer */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-          {/* Copyright */}
-          <p className="text-sm text-background/80">
-            © 2024 Ziona Voyages. All rights reserved.
+        {/* ── Bottom copyright strip ── */}
+        <div className="pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-muted-foreground text-xs">
+            &copy; {year} Ziona Voyages. All rights reserved.
           </p>
-
-          {/* Social Links */}
-          <div className="flex gap-6">
-            <Link href="#" className="text-background/80 hover:text-background transition-colors">
-              <Facebook size={20} />
-            </Link>
-            <Link href="#" className="text-background/80 hover:text-background transition-colors">
-              <Instagram size={20} />
-            </Link>
-            <Link href="#" className="text-background/80 hover:text-background transition-colors">
-              <Twitter size={20} />
-            </Link>
-          </div>
-
-          {/* Legal Links */}
-          <div className="flex gap-4 text-sm">
-            <Link href="#" className="text-background/80 hover:text-background transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="#" className="text-background/80 hover:text-background transition-colors">
-              Terms of Service
-            </Link>
-          </div>
+          <p className="text-muted-foreground text-xs">
+            Premium Luxury Travel &middot; Sri Lanka
+          </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }
