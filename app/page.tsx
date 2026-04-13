@@ -15,7 +15,8 @@ import { Star, ArrowRight, Shield, Clock, Award, Users } from "lucide-react";
 // true  = Show Under Development page
 // false = Show Real Website
 // ================================================================
-const UNDER_DEVELOPMENT_MODE = true;
+const UNDER_DEVELOPMENT_MODE =
+  process.env.NEXT_PUBLIC_UNDER_DEVELOPMENT_MODE === "true";
 
 // ── Data ─────────────────────────────────────────────────────────
 
