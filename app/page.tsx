@@ -91,7 +91,6 @@ const packages = [
 // HOME COMPONENT
 // ================================================================
 export default function Home() {
-
   // ==============================================================
   // UNDER DEVELOPMENT SCREEN
   // ==============================================================
@@ -99,7 +98,7 @@ export default function Home() {
     return (
       <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center text-center px-6">
         <Image
-          src="/under-construction.png"
+          src="/underdevelopment.png"
           alt="Coming Soon"
           width={700}
           height={450}
@@ -131,7 +130,6 @@ export default function Home() {
     <div className="flex-1 bg-background flex flex-col">
       <Header />
       <main className="flex-1">
-
         {/* Hero */}
         <HeroSection />
 
@@ -248,7 +246,6 @@ export default function Home() {
             </Link>
           </div>
         </section>
-
       </main>
     </div>
   );
