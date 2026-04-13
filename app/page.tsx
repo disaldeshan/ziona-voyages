@@ -222,7 +222,33 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <section className="px-6 md:px-16 py-20 bg-background">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <p className="text-accent font-semibold uppercase tracking-widest text-xs mb-2">
+                Tour Packages
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                Choose Your Perfect Journey
+              </h2>
+            </div>
 
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {packages.map((pkg) => (
+                <div key={pkg.name} className="luxury-card p-6 rounded-2xl shadow-lg">
+                  <h3 className="text-xl font-bold mb-2">{pkg.name}</h3>
+                  <p className="text-muted-foreground mb-2">{pkg.duration}</p>
+                  <p className="text-accent font-bold text-lg mb-4">{pkg.price}</p>
+                  {pkg.popular && (
+                    <span className="text-sm text-amber-400 font-semibold">
+                      Popular Choice
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
         {/* CTA Banner */}
         <section className="relative px-6 md:px-16 py-24 overflow-hidden">
           <Image
