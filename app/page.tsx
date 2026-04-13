@@ -223,51 +223,71 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Packages */}
+
         <section className="px-6 md:px-16 py-24 bg-background">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <p className="text-accent font-semibold uppercase tracking-[0.25em] text-sm mb-3">
+              <p className="text-accent font-semibold uppercase tracking-[0.2em] text-sm mb-3">
                 Tour Packages
               </p>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
                 Choose Your Perfect Journey
               </h2>
-              <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-                Handcrafted premium Sri Lanka travel experiences designed for unforgettable memories.
+              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+                Curated premium Sri Lanka travel experiences crafted for unforgettable memories.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {packages.map((pkg) => (
+              {packages.map((pkg, index) => (
                 <div
                   key={pkg.name}
-                  className="relative group bg-[#111827] border border-amber-500/20 rounded-3xl p-8 shadow-xl hover:shadow-amber-500/10 hover:-translate-y-2 transition-all duration-500 overflow-hidden"
+                  className="
+                    relative rounded-3xl p-8
+                    bg-card
+                    border border-border
+                    shadow-xl
+                    hover:shadow-2xl
+                    hover:-translate-y-2
+                    transition-all duration-500
+                  "
                 >
                   {pkg.popular && (
-                    <span className="absolute top-5 right-5 bg-amber-500 text-black text-xs font-bold px-4 py-1 rounded-full">
-                      Popular
-                    </span>
+                    <div className="absolute top-5 right-5 bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                      Popular Choice
+                    </div>
                   )}
 
-                  <h3 className="text-2xl font-bold text-white mb-4">
+                  <h3 className="text-2xl font-bold text-foreground mb-4">
                     {pkg.name}
                   </h3>
 
-                  <p className="text-gray-400 mb-2 text-lg">{pkg.duration}</p>
+                  <p className="text-muted-foreground text-lg mb-3">
+                    {pkg.duration}
+                  </p>
 
-                  <p className="text-3xl font-bold text-amber-400 mb-6">
+                  <p className="text-3xl font-bold text-accent mb-6">
                     {pkg.price}
                   </p>
 
-                  <ul className="space-y-3 text-gray-300 mb-8">
-                    <li>✔ Luxury Accommodation</li>
-                    <li>✔ Private Guided Tours</li>
-                    <li>✔ Airport Transfers Included</li>
-                    <li>✔ Flexible Itinerary</li>
-                  </ul>
+                  <div className="border-t border-border pt-6">
+                    <ul className="space-y-3 text-muted-foreground text-sm">
+                      <li>✓ Luxury accommodation included</li>
+                      <li>✓ Private guided experiences</li>
+                      <li>✓ Airport pickup & transfers</li>
+                      <li>✓ Flexible itinerary options</li>
+                    </ul>
+                  </div>
 
-                  <button className="w-full bg-amber-500 hover:bg-amber-400 text-black font-semibold py-3 rounded-xl transition duration-300">
-                    Book Now
+                  <button className="
+                    mt-8 w-full py-3 rounded-2xl
+                    bg-accent text-accent-foreground
+                    font-semibold
+                    hover:opacity-90
+                    transition
+                  ">
+                    View Details
                   </button>
                 </div>
               ))}
