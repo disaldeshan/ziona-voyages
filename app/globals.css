@@ -219,15 +219,23 @@
 ---------------------------------------------------------------- */
 @layer utilities {
 
-  /* Premium card with hover lift + gold border glow */
+  /* Premium card with hover lift + gold border glow.
+     Default shadow uses the foreground colour so it adapts to both themes:
+     - Light theme (foreground = warm brown #2F241D): renders a warm visible shadow
+     - Dark theme  (foreground = white #FFFFFF):      shadow is nearly invisible
+       since dark cards already contrast against the deep navy background */
   .luxury-card {
     @apply bg-card border border-border rounded-2xl transition-all duration-300;
+    box-shadow:
+      0 2px 16px color-mix(in srgb, var(--foreground) 7%, transparent),
+      0 1px 4px  color-mix(in srgb, var(--foreground) 4%, transparent);
   }
   .luxury-card:hover {
-    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
-    box-shadow: 0 8px 32px color-mix(in srgb, var(--accent) 12%, transparent),
-                0 2px 8px rgba(0, 0, 0, 0.12);
-    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+    box-shadow:
+      0 8px 32px color-mix(in srgb, var(--accent) 14%, transparent),
+      0 4px 12px color-mix(in srgb, var(--foreground) 8%, transparent);
+    transform: translateY(-3px);
   }
 
   /* Gold glow CTA button */

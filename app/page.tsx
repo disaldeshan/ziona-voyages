@@ -96,7 +96,8 @@ export default function Home() {
         </section>
 
         {/* ── Why Choose Us ── */}
-        <section className="px-6 md:px-16 py-20 bg-secondary/20 border-y border-border">
+        {/* bg-secondary/50 gives enough contrast in light (warm beige) and dark themes */}
+        <section className="px-6 md:px-16 py-20 bg-secondary/50 border-y border-border">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <p className="text-accent font-semibold uppercase tracking-widest text-xs mb-2">Why Us</p>
