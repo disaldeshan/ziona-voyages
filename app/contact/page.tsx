@@ -55,8 +55,36 @@ export default function ContactPage() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    // Convert subject value (e.g. "tour-inquiry") to readable label
+    const subjectLabel = formData.subject
+      ? formData.subject.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+      : 'General Inquiry';
+
+    // Build plain-text email body from all form fields
+    const body = [
+      `Name:    ${formData.name}`,
+      `Email:   ${formData.email}`,
+      formData.phone ? `Phone:   ${formData.phone}` : '',
+      `Subject: ${subjectLabel}`,
+      ``,
+      `Message:`,
+      formData.message,
+    ]
+      .filter(Boolean)
+      .join('\n');
+
+    // Open the user's default email client pre-addressed to Ziona Voyages
+    const mailto =
+      `mailto:info@zionavoyages.com` +
+      `?subject=${encodeURIComponent(`Ziona Voyages Inquiry — ${subjectLabel}`)}` +
+      `&body=${encodeURIComponent(body)}`;
+
+    window.open(mailto);
+
+    // Show confirmation banner for 6 seconds
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    setTimeout(() => setSubmitted(false), 6000);
   }
 
   return (
@@ -119,10 +147,16 @@ export default function ContactPage() {
           <div className="lg:col-span-2">
             <form onSubmit={handleSubmit} className="luxury-card p-8 space-y-6">
 
-              {/* Success toast */}
+              {/* Success toast — shown after mailto opens */}
               {submitted && (
-                <div className="p-4 bg-accent/15 border border-accent rounded-xl">
-                  <p className="text-accent font-semibold text-sm">Thank you! We&apos;ll get back to you within 24 hours.</p>
+                <div className="p-4 bg-accent/15 border border-accent rounded-xl flex items-start gap-3">
+                  <span className="text-accent text-lg leading-none">✓</span>
+                  <div>
+                    <p className="text-accent font-semibold text-sm">Your email client has opened!</p>
+                    <p className="text-muted-foreground text-xs mt-0.5">
+                      Your inquiry is pre-filled and addressed to info@zionavoyages.com — just hit Send.
+                    </p>
+                  </div>
                 </div>
               )}
 
